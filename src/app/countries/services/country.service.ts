@@ -18,36 +18,33 @@ baseUrl: string = 'https://restcountries.com/v3.1';
 
   constructor(private httpClient: HttpClient) { }
 
-  searchByCapital(searchCapital:string):Observable<Country[]>{
-      const url = `${this.baseUrl}/capital/${searchCapital}`;
+
+  private getCountriesbyRequest(url: string) : Observable<Country[]>
+  {
       return this.httpClient.get<Country[]>(url)
-                    .pipe(
-                      catchError(error => of([]))
-                    );
+                            .pipe(
+                              catchError( error => of([]))
+                            );
+  }
+
+  searchByCapital(searchCapital:string):Observable<Country[]>{
+      const uri = `${this.baseUrl}/capital/${searchCapital}`;
+      return this.getCountriesbyRequest(uri);
   }
 
   searchByCountry(searchCountry: string) : Observable<Country[]>{
-      const country = `${this.baseUrl}/name/${searchCountry}`;
-      return this.httpClient.get<Country[]>(country)
-                              .pipe(
-                                catchError(error => of([]))
-                              );
+      const uri = `${this.baseUrl}/name/${searchCountry}`;
+      return this.getCountriesbyRequest(uri);
   }
 
 
   searchByRegion(searchRegion: string) : Observable<Country[]>{
-      const region = `${this.baseUrl}/region/${searchRegion}`;
-      return this.httpClient.get<Country[]>(region)
-                            .pipe(
-                              catchError(error => of([]))
-                            );
+      const uri = `${this.baseUrl}/region/${searchRegion}`;
+      return this.getCountriesbyRequest(uri);
   }
 
   searchByAlphaCode(alphaCode: string) : Observable<Country[]>{
     const uri = `${this.baseUrl}/alpha/${alphaCode}`;
-    return this.httpClient.get<Country[]>(uri)
-                          .pipe(
-                            catchError(error => of([]))
-                          );
+    return this.getCountriesbyRequest(uri);
 }
 }
