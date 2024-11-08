@@ -3,4 +3,5 @@
   class="form-control"
   [placeholder]="placeholder"
   (keyup.enter)="emitValue(searchInput.value)"
+  (keypress)="onKeyPressed(searchInput.value)"
   #searchInput>
