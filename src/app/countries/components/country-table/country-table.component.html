@@ -1,0 +1,35 @@
+@if(countries.length === 0)
+{
+<div class="alert alert-warning text-center">
+  No results
+</div>
+}
+
+<table class="table table-striped table-hover"
+[ngStyle]="{display: countries.length ? '' : 'none'} ">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Flag</th>
+      <th>Name</th>
+      <th>Capital</th>
+      <th>Population</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(country of countries; track $index)
+    {
+    <tr>
+      <td>{{$index + 1}}</td>
+      <td>
+        <img [src]="country.flags.svg" [alt] = "country.name.common" class="image circle" style="height: 20px; width: 20px;">
+      </td>
+      <td>{{country.name.common}}</td>
+      <td>{{country.capital}}</td>
+      <td>{{country.population | number }}  </td>
+      <td><a [routerLink]="['/countries/by', country.cca3]" target="_blank">Info</a> </td>
+    </tr>
+    }
+  </tbody>
+</table>
