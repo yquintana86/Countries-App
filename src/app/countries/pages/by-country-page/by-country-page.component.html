@@ -4,7 +4,8 @@
 <div class="row">
   <div class="col">
     <shared-search-box
-    [placeholder]="'Search by country'"
+    placeholder="Search by country"
+    [initialValueSearch]="lastSearchTermUsed"
     (onValueSearch)="searchByCountry($event)"
     (onDebouncer)="searchByCountry($event)">
   </shared-search-box>
@@ -16,7 +17,6 @@
 <div class="row">
   <div class="col">
       <countries-table [countries]="countries"></countries-table>
-
   </div>
 </div>
 

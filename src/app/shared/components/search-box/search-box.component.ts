@@ -14,6 +14,9 @@ private debouncerSubscription?: Subscription;
  @Input()
  public placeholder:string = '';
 
+ @Input()
+ public initialValueSearch:string = '';
+
  @Output()
  public onValueSearch = new EventEmitter<string>();
 
@@ -22,6 +25,7 @@ private debouncerSubscription?: Subscription;
 
  @ViewChild('searchInput')
  public searchInput!: ElementRef<HTMLInputElement>;
+
 
  ngOnInit(): void {
   this.debouncerSubscription = this.debouncer
@@ -35,7 +39,6 @@ private debouncerSubscription?: Subscription;
 }
 
 ngOnDestroy(): void {
-  //this.debouncer.unsubscribe();
   this.debouncerSubscription?.unsubscribe();
 }
 
